@@ -105,6 +105,24 @@ export const getters = {
   averageUse: (state, getters) => {
     if (!getters.filteredData) return 'N/A'
     const { rate } = getters.filteredData || null
-    return round(rate * 100, 1) + '%'
+    return round(rate * 100) + '%'
+  }
+}
+
+export const actions = {
+  getAverageUseForOption({ state }, payload) {
+    const { question, option } = payload
+    return new Promise((resolve, reject) => {
+      // Save a copy of our filters object
+      const filters = { ...state.filters }
+
+      // Change our question to have this option selected instead
+      filters[question.col] = option.value
+
+      const result = filter(state.data, filters)[0]
+
+      if (result === undefined) return 'N/A'
+      return round(result.rate * 100) + '%'
+    })
   }
 }

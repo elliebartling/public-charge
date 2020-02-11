@@ -42,13 +42,18 @@ export default {
       return this.isActive ? 'dark' : 'outline-dark'
     },
     useRateForSelection() {
+      // return ''
+      // return this.$store.dispatch('getAverageUseForOption', {
+      //   question: this.question,
+      //   option: this.option
+      // })
       const filters = { ...this.filters }
       // Change our question to have this option selected instead
       filters[this.question.col] = this.option.value
 
       const result = filter(this.data, filters)[0]
       if (result === undefined) return 'N/A'
-      return round(result.rate * 100, 1) + '%'
+      return round(result.rate * 100) + '%'
     }
   },
   methods: {

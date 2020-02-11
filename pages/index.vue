@@ -1,10 +1,5 @@
 <template>
-  <div class="container mt-5">
-    <div class="alert alert-danger mb-5" role="alert">
-      <strong>Note:</strong> These calculations only apply if you meet the
-      minimum household income threshold. Not sure if you do? Check here:
-      www.link.com
-    </div>
+  <div class="container mt-10">
     <div class="row d-flex flex-row justify-content-between">
       <div class="col-lg-6">
         <h1 class="title display-4 weight-heavy mb-4">
@@ -20,7 +15,9 @@
       </div>
       <div class="col-lg-4">
         <div class="jumbotron text-center">
-          <p>Likelihood of use:</p>
+          <p class="text-uppercase font-weight-bold letter-1">
+            Likelihood of use:
+          </p>
           <span class="display-1 weight-heavy">{{ averageUse }}</span>
         </div>
       </div>
@@ -35,10 +32,10 @@
         class="col-lg-4 col-sm-6 col mb-6"
       />
     </b-form>
-    <div class="">
-      {{ filteredData }}
-      <p />
-      {{ averageUse }}
+    <div class="alert alert-danger mb-5" role="alert">
+      <strong>Note:</strong> These calculations only apply if you meet the
+      minimum household income threshold. Not sure if you do? Check here:
+      www.link.com
     </div>
   </div>
 </template>
@@ -94,5 +91,11 @@ export default {
 }
 .form-group {
   margin-bottom: 4rem;
+}
+.letter-1 {
+  letter-spacing: 1px;
+}
+.mt-10 {
+  margin-top: 10rem;
 }
 </style>
