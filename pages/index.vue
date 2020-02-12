@@ -1,11 +1,11 @@
 <template>
-  <div class="container mt-10">
+  <div id="app" class="container">
     <div id="hero" class="row d-flex flex-row justify-content-between">
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-10 col-12">
         <h1 class="title display-3 weight-heavy mb-4">
           Are you likely to be a Public Charge?
         </h1>
-        <p class="lede weight-medium">
+        <p class="lead weight-medium">
           The government will deny your immigration application if it deems you
           “likely to become a public charge.” It defines “public charge” as
           <mark>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-12 d-flex align-items-start">
         <b-alert
           id="top-line-calc"
           :class="useStyling"
@@ -33,7 +33,7 @@
           </p>
         </b-alert>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-12">
         <b-form id="form-container" class="row d-flex flex-row mb-5">
           <Radio
             v-for="q in questions"
@@ -41,7 +41,7 @@
             :key="q.label"
             :options="options"
             @change="update"
-            class="col-lg-6 col-sm-6 col mb-6"
+            class="col-lg-6 col-md-6 col-12 mb-6"
           />
         </b-form>
       </div>
@@ -50,6 +50,15 @@
       <strong>Note:</strong> These calculations only apply if you meet the
       minimum household income threshold. Not sure if you do? Check here:
       www.link.com
+    </div>
+    <div class="footer border-top mb-5 pt-4">
+      <p>
+        Data by David Bier @ The Cato Institute. App design & build by Ellen
+        Bartling. Concept development by Daniel Bier.
+      </p>
+      <p>
+        Powered by Vue.js & Bootstrap.
+      </p>
     </div>
   </div>
 </template>
@@ -100,15 +109,24 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 * {
   letter-spacing: -0.4px;
 }
+#app {
+  margin-top: 4rem;
+  margin-bottom: 20rem;
+  @media only screen and (min-width: 1292px) {
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+  }
+}
 .title {
   line-height: 1.1;
-}
-.lede {
-  font-size: 20px;
+  font-size: 3rem;
+  @media only screen and (min-width: 1292px) {
+    font-size: 4rem;
+  }
 }
 .weight-heavy {
   font-weight: 800;
@@ -131,6 +149,14 @@ export default {
 
 #top-line-calc {
   font-size: 20px;
+  @media only screen and (max-width: 1292px) {
+    position: fixed;
+    bottom: 10px;
+    width: calc(100% - 40px);
+    left: 20px;
+    display: block;
+    top: auto;
+  }
 }
 
 #top-line-calc .help-text {
