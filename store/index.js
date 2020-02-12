@@ -1,25 +1,26 @@
-import { filter, round } from 'lodash'
-import data from '~/assets/data.json'
+import { filter, find } from 'lodash'
+import data from '~/assets/data-overall.json'
 
 export const state = () => ({
   questions: [
     {
-      label: 'Household Income',
+      label: 'Household Income over 250% of the Poverty Line',
       help:
-        'Is your household income at least 250% of the poverty line, or assets (minus debt) at least 5 times the difference between your household income and 250% of the poverty line? Income income from any member of your household.',
+        'Is your household income at least 250% of the poverty line, or assets (minus debt) at least 5 times the difference between your household income and 250% of the poverty line? Include income from any member of your household.',
       selected: '*',
       col: 'in'
     },
     {
       label: 'Full-Time Employment',
       help:
-        'Are you employed, or do you have a job offer in the United States?',
+        'Are you employed, or will you be employed when you receive status in the United States?',
       selected: '*',
       col: 'em'
     },
     {
       label: 'English Fluency',
-      help: 'Do you speak English fluently?',
+      help:
+        'Do you speak English well or very well? Answer no only if you speak English not well or not at all.',
       selected: '*',
       col: 'en'
     },
@@ -59,12 +60,6 @@ export const state = () => ({
       help: 'Did you personally receive public benefits in the last year? *',
       selected: '*',
       col: 'be'
-    },
-    {
-      label: 'Cit',
-      help: 'Not sure',
-      selected: '*',
-      col: 'ci'
     }
   ],
   filters: {
@@ -76,8 +71,7 @@ export const state = () => ({
     ag: '*',
     hh: '*',
     he: '*',
-    be: '*',
-    ci: '*'
+    be: '*'
   },
   data
 })
@@ -100,12 +94,12 @@ export const getters = {
     return state.filters
   },
   filteredData: (state) => {
-    return filter(state.data, state.filters)[0]
+    return find(state.data, state.filters)
   },
   averageUse: (state, getters) => {
     if (!getters.filteredData) return 'N/A'
     const { rate } = getters.filteredData || null
-    return round(rate * 100) + '%'
+    return rate
   }
 }
 
@@ -122,7 +116,7 @@ export const actions = {
       const result = filter(state.data, filters)[0]
 
       if (result === undefined) return 'N/A'
-      return round(result.rate * 100) + '%'
+      return result.rate
     })
   }
 }

@@ -2,17 +2,29 @@
   <b-button
     @click="select(question, option.value)"
     :variant="isActiveStyling"
+    :disabled="!dataAvailable"
     class="d-flex flex-row justify-content-between"
   >
     <span>
       {{ option.text }}
     </span>
-    <span v-if="!isActive">{{ useRateForSelection }}</span>
+    <span v-if="dataAvailable" :class="{ 'is-selected': isActive }">
+      <span class="icon">
+        <b-icon v-if="greaterThanOverall" icon="arrow-up-right" />
+        <b-icon v-if="lessThanOverall" icon="arrow-down-right" />
+      </span>
+      <span class="percent">
+        {{ useRateForSelection | percent }}
+      </span>
+    </span>
+    <span v-else>
+      Not Enough Data
+    </span>
   </b-button>
 </template>
 
 <script>
-import { filter, round } from 'lodash'
+import { filter } from 'lodash'
 export default {
   props: {
     question: {
@@ -39,21 +51,32 @@ export default {
       return this.question.selected === this.option.value
     },
     isActiveStyling() {
-      return this.isActive ? 'dark' : 'outline-dark'
+      if (!this.dataAvailable) {
+        return 'dark button-disabled'
+      } else {
+        return this.isActive ? 'dark' : 'outline-dark'
+      }
+    },
+    overallUseRate() {
+      return this.$store.getters.averageUse
+    },
+    lessThanOverall() {
+      return this.useRateForSelection < this.overallUseRate
+    },
+    greaterThanOverall() {
+      return this.useRateForSelection > this.overallUseRate
+    },
+    dataAvailable() {
+      return this.useRateForSelection
     },
     useRateForSelection() {
-      // return ''
-      // return this.$store.dispatch('getAverageUseForOption', {
-      //   question: this.question,
-      //   option: this.option
-      // })
       const filters = { ...this.filters }
       // Change our question to have this option selected instead
       filters[this.question.col] = this.option.value
 
       const result = filter(this.data, filters)[0]
-      if (result === undefined) return 'N/A'
-      return round(result.rate * 100) + '%'
+      if (result === undefined) return false
+      return result.rate
     }
   },
   methods: {
@@ -66,3 +89,15 @@ export default {
   }
 }
 </script>
+
+<style>
+.is-selected {
+  opacity: 0.5;
+}
+
+.button-disabled {
+  color: #b6bdc1 !important;
+  background-color: #505962 !important;
+  cursor: not-allowed;
+}
+</style>

@@ -67,5 +67,7 @@ export default {
 .form-group > label {
   font-weight: 700;
   font-size: 20px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
 </style>

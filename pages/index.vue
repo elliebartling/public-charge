@@ -1,37 +1,51 @@
 <template>
   <div class="container mt-10">
-    <div class="row d-flex flex-row justify-content-between">
-      <div class="col-lg-6">
-        <h1 class="title display-4 weight-heavy mb-4">
+    <div id="hero" class="row d-flex flex-row justify-content-between">
+      <div class="col-lg-8">
+        <h1 class="title display-3 weight-heavy mb-4">
           Are you likely to be a Public Charge?
         </h1>
-        <p class="weight-medium">
-          Describe here what this app does, who it is for, and what a “public
-          charge” is. Fusce vehicula dolor arcu, sit amet blandit dolor mollis
-          nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed
-          sollicitudin ipsum quis nunc sollicitudin ultrices. Donec euismod
-          scelerisque ligula.
+        <p class="lede weight-medium">
+          The government will deny your immigration application if it deems you
+          “likely to become a public charge.” It defines “public charge” as
+          <mark>
+            51% probability of using most types of means-tested public benefits
+          </mark>
+          for more than 12 months in a 36-month period. Officials will assess
+          your probability based on your individual characteristics. This tool
+          allows you to view the benefits use rates for people with your
+          demographic profile.
         </p>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-4">
-        <div class="jumbotron text-center">
-          <p class="text-uppercase font-weight-bold letter-1">
-            Likelihood of use:
+        <b-alert
+          id="top-line-calc"
+          :class="useStyling"
+          show
+          variant="dark"
+          class="sticky-top text-white border-0 text-center py-5"
+        >
+          <h1 class="display-4 weight-heavy">{{ averageUse | percent }}</h1>
+          <p class="mb-0 help-text">
+            Benefits Use Rate for people with your demographic profile
           </p>
-          <span class="display-1 weight-heavy">{{ averageUse }}</span>
-        </div>
+        </b-alert>
+      </div>
+      <div class="col-lg-8">
+        <b-form id="form-container" class="row d-flex flex-row mb-5">
+          <Radio
+            v-for="q in questions"
+            :question="q"
+            :key="q.label"
+            :options="options"
+            @change="update"
+            class="col-lg-6 col-sm-6 col mb-6"
+          />
+        </b-form>
       </div>
     </div>
-    <b-form id="form-container" class="row d-flex flex-row mt-5 mb-5">
-      <Radio
-        v-for="q in questions"
-        :question="q"
-        :key="q.label"
-        :options="options"
-        @change="update"
-        class="col-lg-4 col-sm-6 col mb-6"
-      />
-    </b-form>
     <div class="alert alert-danger mb-5" role="alert">
       <strong>Note:</strong> These calculations only apply if you meet the
       minimum household income threshold. Not sure if you do? Check here:
@@ -68,6 +82,13 @@ export default {
     },
     averageUse() {
       return this.$store.getters.averageUse
+    },
+    useStyling() {
+      if (this.averageUse > 0.5) {
+        return 'bg-danger'
+      } else {
+        return 'bg-primary'
+      }
     }
   },
   methods: {
@@ -80,8 +101,14 @@ export default {
 </script>
 
 <style>
+* {
+  letter-spacing: -0.4px;
+}
 .title {
   line-height: 1.1;
+}
+.lede {
+  font-size: 20px;
 }
 .weight-heavy {
   font-weight: 800;
@@ -97,5 +124,25 @@ export default {
 }
 .mt-10 {
   margin-top: 10rem;
+}
+.mb-10 {
+  margin-bottom: 10rem;
+}
+
+#top-line-calc {
+  font-size: 20px;
+}
+
+#top-line-calc .help-text {
+  opacity: 0.7;
+  line-height: 1.1;
+}
+
+#hero {
+  margin-bottom: 6rem;
+}
+
+.sticky-top {
+  top: 2rem;
 }
 </style>
