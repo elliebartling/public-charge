@@ -71,7 +71,14 @@
           Bartling. Concept development by Daniel Bier.
         </p>
         <p>
-          Powered by Vue.js & Bootstrap.
+          Powered by Vue.js & Bootstrap. See our data
+          <a
+            href="https://github.com/elliebartling/public-charge/tree/master/assets"
+          >
+            here
+          </a>
+          and our app code
+          <a href="https://github.com/elliebartling/public-charge">here</a>.
         </p>
       </div>
       <div class="col-md-6 col-12">
