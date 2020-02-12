@@ -46,9 +46,23 @@
         </b-form>
       </div>
     </div>
-    <div class="alert alert-danger mb-5" role="alert">
+    <div class="alert alert-secondary mb-1 col-lg-8 offset-lg-4" role="alert">
       <strong>Note:</strong> These calculations only apply if you meet the
       minimum household income threshold of > 125% of the poverty line.
+    </div>
+    <div class="alert alert-light mb-5 col-lg-8 offset-lg-4" role="alert">
+      <p>
+        <strong>Additional Information:</strong>
+      </p>
+      <ol>
+        <li>
+          Include cash benefits from any state or local government, housing
+          subsidies, Temporary Assistance for Needy Families (TANF),
+          Supplemental Security Income (SSI), Supplemental Nutritional
+          Assistance Program (SNAP or food stamps), Medicaid (if you went to the
+          doctor or hospital obtained prescription drugs).
+        </li>
+      </ol>
     </div>
     <div class="footer row border-top mb-5 pt-4">
       <div class="col-md-6 col-12">

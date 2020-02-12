@@ -4,7 +4,7 @@ import data from '~/assets/data-overall.json'
 export const state = () => ({
   questions: [
     {
-      label: 'Household Income over 250% of the Poverty Line',
+      label: 'Household Income Greater Than 250% of the Poverty Line',
       help:
         'Is your household income at least 250% of the poverty line, or assets (minus debt) at least 5 times the difference between your household income and 250% of the poverty line? Include income from any member of your household.',
       selected: '*',
@@ -16,6 +16,13 @@ export const state = () => ({
         'Are you employed, or will you be employed when you receive status in the United States?',
       selected: '*',
       col: 'em'
+    },
+    {
+      label: 'Use of Benefits',
+      help:
+        'Did you personally receive public benefits in the last year?<sup>1</sup>',
+      selected: '*',
+      col: 'be'
     },
     {
       label: 'English Fluency',
@@ -54,12 +61,6 @@ export const state = () => ({
         'Is your health good, very good, or excellent? Answer no only if your health is fair or poor.',
       selected: '*',
       col: 'he'
-    },
-    {
-      label: 'Use of Benefits',
-      help: 'Did you personally receive public benefits in the last year? *',
-      selected: '*',
-      col: 'be'
     }
   ],
   filters: {

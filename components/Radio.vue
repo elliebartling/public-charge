@@ -1,8 +1,6 @@
 <template>
   <b-form-group id="input-group-1" :label="question.label" label-for="input-1">
-    <small class="form-text text-muted mb-3 mt-n2">
-      {{ question.help }}
-    </small>
+    <small class="form-text text-muted mb-3 mt-n2" v-html="question.help" />
     <b-button-group style="width:100%" vertical>
       <Option
         v-for="(opt, index) in options"
