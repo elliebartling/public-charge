@@ -46,13 +46,15 @@
         </b-form>
       </div>
     </div>
-    <div class="alert alert-secondary mb-1 col-lg-8 offset-lg-4" role="alert">
+    <div class="alert alert-secondary mb-3 col-lg-8 offset-lg-4" role="alert">
       <strong>Note:</strong> These calculations only apply if you meet the
       minimum household income threshold of > 125% of the poverty line.
     </div>
     <div class="alert alert-light mb-5 col-lg-8 offset-lg-4" role="alert">
+      <h5 class="font-weight-bold">Additional Information:</h5>
       <p>
-        <strong>Additional Information:</strong>
+        Data may not be available for every combination of options. We've
+        disabled all options where sample sizes are too small to use.
       </p>
       <ol>
         <li>
@@ -71,7 +73,7 @@
           Bartling. Concept development by Daniel Bier.
         </p>
         <p>
-          Powered by Vue.js & Bootstrap. See our data
+          Powered by Vue.js & Netlify. See our data
           <a
             href="https://github.com/elliebartling/public-charge/tree/master/assets"
           >
