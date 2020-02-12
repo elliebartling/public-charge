@@ -3,7 +3,7 @@
     <div id="hero" class="row d-flex flex-row justify-content-between">
       <div class="col-lg-8 col-md-10 col-12">
         <h1 class="title display-3 weight-heavy mb-4">
-          Are you likely to be a Public Charge?
+          Are you likely to be a Public&nbsp;Charge?
         </h1>
         <p class="lead weight-medium">
           The government will deny your immigration application if it deems you
@@ -48,8 +48,7 @@
     </div>
     <div class="alert alert-danger mb-5" role="alert">
       <strong>Note:</strong> These calculations only apply if you meet the
-      minimum household income threshold. Not sure if you do? Check here:
-      www.link.com
+      minimum household income threshold of > 125% of the poverty line.
     </div>
     <div class="footer border-top mb-5 pt-4">
       <p>
