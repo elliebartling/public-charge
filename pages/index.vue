@@ -50,14 +50,33 @@
       <strong>Note:</strong> These calculations only apply if you meet the
       minimum household income threshold of > 125% of the poverty line.
     </div>
-    <div class="footer border-top mb-5 pt-4">
-      <p>
-        Data by David Bier @ The Cato Institute. App design & build by Ellen
-        Bartling. Concept development by Daniel Bier.
-      </p>
-      <p>
-        Powered by Vue.js & Bootstrap.
-      </p>
+    <div class="footer row border-top mb-5 pt-4">
+      <div class="col">
+        <p>
+          Data by David Bier @ The Cato Institute. App design & build by Ellen
+          Bartling. Concept development by Daniel Bier.
+        </p>
+        <p>
+          Powered by Vue.js & Bootstrap.
+        </p>
+      </div>
+      <div class="col">
+        <div class="w-100 d-flex justify-content-end align-items-center">
+          <p class="mb-0 mr-3 font-weight-bold ">
+            Embed this on your website:
+          </p>
+          <button
+            v-clipboard:copy="embedCode"
+            v-clipboard:success="handleCopyStatus"
+            class="btn btn-primary"
+          >
+            Copy Embed Code
+          </button>
+        </div>
+        <p class="w-100 text-right">
+          <small v-if="copySucceeded === true">Copied!</small>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +90,9 @@ export default {
   },
   data() {
     return {
+      copySucceeded: null,
+      embedCode:
+        '<!-- copy and paste me --><iframe id="public-charge-calculator-embed" src="https://public-charge-calculator.netlify.com/" style="border: 0px; width: 100%; height: 100%;"></iframe>',
       options: [
         { value: '*', text: 'Any' },
         { value: 'YES', text: 'Yes' },
@@ -103,6 +125,12 @@ export default {
     update(event) {
       // eslint-disable-next-line
       console.log(event)
+    },
+    handleCopyStatus(status) {
+      this.copySucceeded = true
+      setTimeout(() => {
+        this.copySucceeded = false
+      }, 1000)
     }
   }
 }
