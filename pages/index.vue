@@ -25,9 +25,9 @@
           :class="useStyling"
           show
           variant="dark"
-          class="sticky-top text-white border-0 text-center py-5"
+          class="sticky-top text-white border-0 text-center py-md-5 py-3"
         >
-          <h1 class="display-4 weight-heavy">{{ averageUse | percent }}</h1>
+          <h1 class="c-display-4 weight-heavy">{{ averageUse | percent }}</h1>
           <p class="mb-0 help-text">
             Benefits Use Rate for people with your demographic profile
           </p>
@@ -51,7 +51,7 @@
       minimum household income threshold of > 125% of the poverty line.
     </div>
     <div class="footer row border-top mb-5 pt-4">
-      <div class="col">
+      <div class="col-md-6 col-12">
         <p>
           Data by David Bier @ The Cato Institute. App design & build by Ellen
           Bartling. Concept development by Daniel Bier.
@@ -60,9 +60,9 @@
           Powered by Vue.js & Bootstrap.
         </p>
       </div>
-      <div class="col">
-        <div class="w-100 d-flex justify-content-end align-items-center">
-          <p class="mb-0 mr-3 font-weight-bold ">
+      <div class="col-md-6 col-12">
+        <div class="w-100 d-md-flex justify-content-end align-items-center">
+          <p class="mb-md-0 mr-3 font-weight-bold ">
             Embed this on your website:
           </p>
           <button
@@ -175,7 +175,13 @@ export default {
 }
 
 #top-line-calc {
-  font-size: 20px;
+  font-size: 1rem;
+  @media only screen and (min-width: 1292px) {
+    font-size: 1.3rem;
+  }
+  @media only screen and (min-width: 768px) {
+    font-size: 1.4rem;
+  }
   @media only screen and (max-width: 1292px) {
     position: fixed;
     bottom: 10px;
@@ -197,5 +203,15 @@ export default {
 
 .sticky-top {
   top: 2rem;
+}
+
+.c-display-4 {
+  font-size: 1.5rem;
+  @media only screen and (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+  @media only screen and (min-width: 1292px) {
+    font-size: 3.5rem;
+  }
 }
 </style>
