@@ -1,4 +1,4 @@
-import { filter, find } from 'lodash'
+import { find } from 'lodash'
 import data from '~/assets/data-overall.json'
 
 export const state = () => ({
@@ -113,7 +113,7 @@ export const actions = {
       // Change our question to have this option selected instead
       filters[question.col] = option.value
 
-      const result = filter(state.data, filters)[0]
+      const result = find(state.data, filters)
 
       if (result === undefined) return 'N/A'
       return result.rate
